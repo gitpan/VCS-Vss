@@ -6,7 +6,7 @@ use VCS::Vss::Dir;
 use VCS::Vss::File;
 use VCS::Vss::Version;
 
-$VERSION = '0.10';
+$VERSION = '0.20';
 
 my $vss;
 
@@ -38,6 +38,14 @@ sub _vss_conn {
 sub _fix_path {
 	my ($self) = @_;
 	my $new_path;
+	
+	# Remove ignored query portion of path
+	$self->{PATH} =~ s/\?.+//;
+	$self->{URL} =~ s/\?.+//;
+	
+	# Patch provided by Tim Hood <timhood40@yahoo.com> to handle spaces in URLs (taken from CGI unescape function)
+	$self->{PATH} =~ s/%([0-9A-Fa-f]{2})/chr(hex($1))/eg;
+
 	($self->{SRCSAFE_INI}, $new_path) = $self->{PATH} =~ m|^/(.+)srcsafe.ini/(.+)|;
 	if ($self->{SRCSAFE_INI}) {
 		$self->{PATH} = '$/' . $new_path;

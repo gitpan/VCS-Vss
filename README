@@ -1,7 +1,7 @@
 VCS/VSS version 0.10
 ====================
 
-VCS::VSS requires Win32::OLE to run, so it probably will only 
+VCS::Vss requires Win32::OLE to run, so it probably will only 
 ever work on Win32 platforms.
 
 An environment variable named VSSROOT should be set that indicates 
@@ -10,7 +10,7 @@ the directory in which your srcsafe.ini file resides.
 It is a good idea to set your VSSROOT environment variable prior 
 to using the module, although you can specify the location of the 
 srcsafe.ini file in the actual URL passed into the constructors 
-for VCS::VSS objects.  See the pod for  VCS::VSS for more details.
+for VCS::VSS objects.  See the pod for  VCS::Vss for more details.
 
 INSTALLATION
 
